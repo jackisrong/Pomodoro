@@ -7,13 +7,21 @@
 	<title>Pomodoro</title>
 </head>
 
-<body>
-	<div id="countdown">25:00</div>
-	<div id="buttons">
-		<div class="circleButton" id="startButton" onclick="startTimer()">Start</div>
-		<div class="circleButton" id="pauseButton" onclick="">Pause</div>
-		<div class="circleButton" id="continueButton" onclick="">Continue</div>
-		<div class="circleButton" id="stopButton" onclick="">Stop</div>
+<body onload="initialize()">
+	<div id="allContent">
+		<div id="topBar">
+			Pomodoro Asparagus App - "See all your dreams become beautiful realities"
+		</div>
+
+		<div id="countdownContainer">
+			<div id="timer">25:00</div>
+			<div id="buttons">
+				<div class="circleButton" id="startButton" onclick="startTimer()">Start</div>
+				<div class="circleButton" id="pauseButton" onclick="">Pause</div>
+				<div class="circleButton" id="continueButton" onclick="">Continue</div>
+				<div class="circleButton" id="stopButton" onclick="">Stop</div>
+			</div>
+		</div>
 	</div>
 </body>
 
