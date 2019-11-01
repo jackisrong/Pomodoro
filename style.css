@@ -1,3 +1,61 @@
 html {
 	font-family: Arial;
 }
+
+#countdown {
+	font-size: 10em;
+	text-align: center;
+}
+
+#buttons {
+	text-align: center;
+}
+
+.circleButton {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	border-radius: 50%;
+	border-style: solid;
+	text-align: center;
+	cursor: pointer;
+	transition-duration: 0.4s;
+	color: #000;
+	background: #fff;
+	/* These are usually set in the individual id sections of this CSS file */
+	border-color: #000;
+}
+
+#startButton {
+	border-color: #8F8;
+}
+
+#startButton:hover {
+	background: #8F8;
+}
+
+#pauseButton {
+	border-color: #facd7f;
+}
+
+#pauseButton:hover {
+	background: #facd7f;
+}
+
+#continueButton {
+	border-color: #8F8;
+}
+
+#continueButton:hover {
+	background: #8F8;
+}
+
+#stopButton {
+	border-color: #fa787e;
+}
+
+#stopButton:hover {
+	background: #fa787e;
+}
