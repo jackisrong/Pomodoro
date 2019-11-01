@@ -1,11 +1,17 @@
 var numOfPomodoros = 1;
 
-function startMainTimer() {
+function initialize() {
+    document.getElementById("pauseButton").style.display = "inline-block";
+    document.getElementById("pauseButton").style.display = "none";
+    document.getElementById("continueButton").style.display = "none";
+    document.getElementById("stopButton").style.display = "none";
+}
 
-    document.getElementById("countdown").innerHTML = "25:00";
+function startMainTimer() {
+    document.getElementById("timer").innerHTML = "25:00";
 
     var initialTime = Date.now();
-    
+
     var tick = setInterval(function countdown() {
         var timePassed = 10 - ((Date.now() - initialTime) / 1000 | 0);
 
@@ -15,7 +21,7 @@ function startMainTimer() {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        document.getElementById("countdown").innerHTML = minutes + ":" + seconds;
+        document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 
         if (timePassed == 0 && numOfPomodoros < 2) {
             clearInterval(tick);
@@ -32,7 +38,7 @@ function startShortBreakTimer() {
 
     var initialTime = Date.now();
     var tick = setInterval(function countdown() {
-        document.getElementById("countdown").innerHTML = "5:00";
+        document.getElementById("timer").innerHTML = "5:00";
 
         var timePassed = 6 - ((Date.now() - initialTime) / 1000 | 0);
 
@@ -42,7 +48,7 @@ function startShortBreakTimer() {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        document.getElementById("countdown").innerHTML = minutes + ":" + seconds;
+        document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 
         if (timePassed == 0) {
             clearInterval(tick);
@@ -57,7 +63,7 @@ function startLongBreakTimer() {
 
     var initialTime = Date.now();
     var tick = setInterval(function countdown() {
-        document.getElementById("countdown").innerHTML = "5:00";
+        document.getElementById("timer").innerHTML = "5:00";
 
         var timePassed = 16 - ((Date.now() - initialTime) / 1000 | 0);
 
@@ -67,7 +73,7 @@ function startLongBreakTimer() {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        document.getElementById("countdown").innerHTML = minutes + ":" + seconds;
+        document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 
         if (timePassed == 0) {
             clearInterval(tick);
