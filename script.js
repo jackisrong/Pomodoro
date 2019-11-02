@@ -1,4 +1,6 @@
 var numOfPomodoros = 1;
+var timeRemainingGlobal = 0;
+var tick;
 
 function initialize() {
     document.getElementById("timer").innerHTML = "25:00";
@@ -13,12 +15,13 @@ function startTimer(timeSet) {
     document.getElementById("pauseButton").style.display = "inline-block";
     var initialTime = Date.now() + 1000;
 
-    var tick = setInterval(function countdown() {
+    tick = setInterval(function countdown() {
         var timePassed = timeSet - ((Date.now() - initialTime) / 1000 | 0);
 
         var minutes = (timePassed / 60) | 0;
         var seconds = (timePassed % 60) | 0;
 
+        timeRemainingGlobal = minutes * 60 + seconds;
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
@@ -51,5 +54,21 @@ function startTimer(timeSet) {
     }, 1000);
 }
 
+function pauseTimer() {
+    document.getElementById("pauseButton").style.display = "none";
+    document.getElementById("continueButton").style.display = "inline-block";
+    document.getElementById("stopButton").style.display = "inline-block";
+    clearInterval(tick);
+}
 
+function continueTimer() {
+    document.getElementById("pauseButton").style.display = "inline-blank";
+    document.getElementById("continueButton").style.display = "none";
+    document.getElementById("stopButton").style.display = "none";
+    startTimer(timeRemainingGlobal);
+}
 
+function stopTimer() {
+    initialize();
+    clearInterval(tick);
+}
