@@ -22,16 +22,17 @@ function startTimer(timeSet) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-// 25 IS MAIN
-// 15 IS LONG
-// 5 IS SHORT
         document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+
+        // 25 IS MAIN
+        // 15 IS LONG
+        // 5 IS SHORT
         if (timePassed == 0) {
             if (timeSet == 15) {
                 // LONG BREAK
-               clearInterval(tick);
-               numOfPomodoros = 0;
-               startTimer(25);
+                clearInterval(tick);
+                numOfPomodoros = 0;
+                startTimer(25);
             } else if (timeSet == 5) {
                 // SHORT BREAK
                 clearInterval(tick);
