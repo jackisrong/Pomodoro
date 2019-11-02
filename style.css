@@ -53,10 +53,14 @@ html, body {
 	text-align: center;
 	cursor: pointer;
 	transition-duration: 0.4s;
-	color: #000;
-	background: #fff;
+	color: #fff;
+	background: transparent;
 	/* These are usually set in the individual id sections of this CSS file */
 	border-color: #000;
+}
+
+.circleButton:hover {
+	color: #000;
 }
 
 #startButton {
