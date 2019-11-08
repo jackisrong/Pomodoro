@@ -15,9 +15,19 @@
 		</div>
 
 		<div id="countdownContainer">
-			<input id="check" type="checkbox" onclick="stopTimer()">
-			<span class="taskCheck"></span>
-			<input id="task" type="text" onkeypress="return enterTask()">
+			<div id="inputContainer">
+				<div id="checkboxInput">
+					<label id="checkboxContainer">
+						<input id="checkbox" type="checkbox" onclick="stopTimer()">
+						<span id="checkmark"></span>
+					</label>
+				</div>
+
+				<div id="textInput">
+					<input id="task" type="text" placeholder="What do you want to get done?"
+						onkeypress="return enterTask()" autofocus>
+				</div>
+			</div>
 			<!-- <div id="welcomeMessage">Hello.</div> -->
 			<div id="timer">25:00</div>
 			<div id="buttons">

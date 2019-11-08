@@ -3,6 +3,8 @@ var timeRemainingGlobal = 0;
 var tick;
 
 function initialize() {
+    document.getElementById("checkboxInput").style.display = "none";
+    document.getElementById("checkbox").checked = false;
     document.getElementById("task").style.display = "inline-block";
     document.getElementById("timer").style.display = "none";
     document.getElementById("startButton").style.display = "none";
@@ -13,6 +15,7 @@ function initialize() {
 
 function enterTask() {
     if (event.keyCode === 13) {
+        document.getElementById("checkboxInput").style.display = "inline-block";
         setupTimer();
     }
 }
@@ -87,7 +90,7 @@ function continueTimer() {
 
 function stopTimer() {
     document.getElementById("task").disabled = false;
-    document.getElementById("task").value="";
+    document.getElementById("task").value = "";
     initialize();
     clearInterval(tick);
 }
