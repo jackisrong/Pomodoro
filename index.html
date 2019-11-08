@@ -15,6 +15,10 @@
 		</div>
 
 		<div id="countdownContainer">
+			<input id="check" type="checkbox" onclick="stopTimer()">
+			<span class="taskCheck"></span>
+			<input id="task" type="text" onkeypress="return enterTask()">
+			<!-- <div id="welcomeMessage">Hello.</div> -->
 			<div id="timer">25:00</div>
 			<div id="buttons">
 				<div class="circleButton" id="startButton" onclick="startTimer(25)">Start</div>

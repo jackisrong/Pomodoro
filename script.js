@@ -3,11 +3,28 @@ var timeRemainingGlobal = 0;
 var tick;
 
 function initialize() {
+    document.getElementById("task").style.display = "inline-block";
+    document.getElementById("timer").style.display = "none";
+    document.getElementById("startButton").style.display = "none";
+    document.getElementById("pauseButton").style.display = "none";
+    document.getElementById("continueButton").style.display = "none";
+    document.getElementById("stopButton").style.display = "none";
+}
+
+function enterTask() {
+    if (event.keyCode === 13) {
+        setupTimer();
+    }
+}
+
+function setupTimer() {
+    document.getElementById("task").disabled = true;
     document.getElementById("timer").innerHTML = "25:00";
     document.getElementById("startButton").style.display = "inline-block";
     document.getElementById("pauseButton").style.display = "none";
     document.getElementById("continueButton").style.display = "none";
-    document.getElementById("stopButton").style.display = "none";
+    document.getElementById("task").style.display = "inline-block";
+    document.getElementById("timer").style.display = "inline-block";
 }
 
 function startTimer(timeSet) {
@@ -69,6 +86,8 @@ function continueTimer() {
 }
 
 function stopTimer() {
+    document.getElementById("task").disabled = false;
+    document.getElementById("task").value="";
     initialize();
     clearInterval(tick);
 }
