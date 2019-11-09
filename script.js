@@ -2,7 +2,26 @@ var numOfPomodoros = 1;
 var timeRemainingGlobal = 0;
 var tick;
 
+/*Stolen from stackoverflow
+var asparagusNodeList = document.querySelectorAll(".asparagus");
+var classes = Array.prototype.map.call(asparagusNodeList, function(element) {
+    return element.value;
+});
+*/
+
+const LONG_BREAK_TIME = 15; 
+const SHORT_BREAK_TIME = 5;
+const WORK_TIME = 10;
+
+var asparaguses = document.getElementsByClassName("asparagus");
+
+function clearPomodoroNumber() {
+    for (asparagusNum = 1; asparagusNum < asparaguses.length; asparagusNum++) {
+        asparaguses[asparagusNum].style.display = "none";
+    }
+}
 function initialize() {
+    clearPomodoroNumber();
     document.getElementById("checkboxInput").style.display = "none";
     document.getElementById("checkbox").checked = false;
     document.getElementById("task").style.display = "inline-block";
@@ -47,27 +66,29 @@ function startTimer(timeSet) {
 
         document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 
-        // 25 IS MAIN
+        // 10 IS MAIN
         // 15 IS LONG
         // 5 IS SHORT
         if (timePassed == 0) {
-            if (timeSet == 15) {
+            if (timeSet == LONG_BREAK_TIME) {
                 // LONG BREAK
                 clearInterval(tick);
-                numOfPomodoros = 0;
-                startTimer(25);
-            } else if (timeSet == 5) {
+                numOfPomodoros = 1;
+                clearPomodoroNumber();
+                startTimer(WORK_TIME);
+            } else if (timeSet == SHORT_BREAK_TIME) {
                 // SHORT BREAK
                 clearInterval(tick);
                 numOfPomodoros++;
-                startTimer(25);
+                asparaguses[numOfPomodoros-1].style.display = "inline-block";
+                startTimer(WORK_TIME);
             } else {
                 // MAIN 
                 clearInterval(tick);
-                if (numOfPomodoros < 2) {
-                    startTimer(5);
+                if (numOfPomodoros < 5) {
+                    startTimer(SHORT_BREAK_TIME);
                 } else {
-                    startTimer(15);
+                    startTimer(LONG_BREAK_TIME);
                 }
             }
         }
@@ -89,6 +110,7 @@ function continueTimer() {
 }
 
 function stopTimer() {
+    clearPomodoroNumber();
     document.getElementById("task").disabled = false;
     document.getElementById("task").value = "";
     initialize();
