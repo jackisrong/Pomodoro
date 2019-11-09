@@ -2,24 +2,18 @@ var numOfPomodoros = 1;
 var timeRemainingGlobal = 0;
 var tick;
 
-/*Stolen from stackoverflow
-var asparagusNodeList = document.querySelectorAll(".asparagus");
-var classes = Array.prototype.map.call(asparagusNodeList, function(element) {
-    return element.value;
-});
-*/
-
-const LONG_BREAK_TIME = 15; 
+const LONG_BREAK_TIME = 15;
 const SHORT_BREAK_TIME = 5;
 const WORK_TIME = 10;
 
 var asparaguses = document.getElementsByClassName("asparagus");
 
 function clearPomodoroNumber() {
-    for (asparagusNum = 1; asparagusNum < asparaguses.length; asparagusNum++) {
-        asparaguses[asparagusNum].style.display = "none";
+    for (i = 1; i < asparaguses.length; i++) {
+        asparaguses[i].style.display = "none";
     }
 }
+
 function initialize() {
     clearPomodoroNumber();
     document.getElementById("checkboxInput").style.display = "none";
@@ -41,7 +35,7 @@ function enterTask() {
 
 function setupTimer() {
     document.getElementById("task").disabled = true;
-    document.getElementById("timer").innerHTML = "25:00";
+    document.getElementById("timer").innerHTML = WORK_TIME + ":00";
     document.getElementById("startButton").style.display = "inline-block";
     document.getElementById("pauseButton").style.display = "none";
     document.getElementById("continueButton").style.display = "none";
@@ -49,7 +43,11 @@ function setupTimer() {
     document.getElementById("timer").style.display = "inline-block";
 }
 
-function startTimer(timeSet) {
+function startTimer() {
+    runTimer(WORK_TIME);
+}
+
+function runTimer(timeSet) {
     document.getElementById("startButton").style.display = "none";
     document.getElementById("pauseButton").style.display = "inline-block";
     var initialTime = Date.now() + 1000;
@@ -75,20 +73,20 @@ function startTimer(timeSet) {
                 clearInterval(tick);
                 numOfPomodoros = 1;
                 clearPomodoroNumber();
-                startTimer(WORK_TIME);
+                runTimer(WORK_TIME);
             } else if (timeSet == SHORT_BREAK_TIME) {
                 // SHORT BREAK
                 clearInterval(tick);
                 numOfPomodoros++;
-                asparaguses[numOfPomodoros-1].style.display = "inline-block";
-                startTimer(WORK_TIME);
+                asparaguses[numOfPomodoros - 1].style.display = "inline-block";
+                runTimer(WORK_TIME);
             } else {
                 // MAIN 
                 clearInterval(tick);
                 if (numOfPomodoros < 5) {
-                    startTimer(SHORT_BREAK_TIME);
+                    runTimer(SHORT_BREAK_TIME);
                 } else {
-                    startTimer(LONG_BREAK_TIME);
+                    runTimer(LONG_BREAK_TIME);
                 }
             }
         }
@@ -106,7 +104,7 @@ function continueTimer() {
     document.getElementById("pauseButton").style.display = "inline-blank";
     document.getElementById("continueButton").style.display = "none";
     document.getElementById("stopButton").style.display = "none";
-    startTimer(timeRemainingGlobal);
+    runTimer(timeRemainingGlobal);
 }
 
 function stopTimer() {
