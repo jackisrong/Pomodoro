@@ -195,6 +195,7 @@ input[type=text]:focus {
 
 #stopButton {
 	border-color: #fa787e;
+	font-size: 13px;
 }
 
 #stopButton:hover {
