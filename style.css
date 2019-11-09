@@ -186,6 +186,7 @@ input[type=text]:focus {
 
 #continueButton {
 	border-color: #8F8;
+	font-size: 13px;
 }
 
 #continueButton:hover {
